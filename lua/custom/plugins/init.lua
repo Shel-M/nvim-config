@@ -10,21 +10,19 @@ require("lazy").setup({
 
 	-- Simple setups, but require an opts = {} to run properly
 
-	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" command to comment visually selected lines
+	{ "numToStr/Comment.nvim",            opts = {} }, -- "gc" command to comment visually selected lines
 
 	-- Advanced setups
 
 	-- LSP integration with nvim
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			"williamboman/mason.nvim", -- Automatic LSP management
-			"williamboman/mason-lspconfig.nvim", -- Automatic LSP configuration
-			{ "j-hui/fidget.nvim", opts = {}, }, -- Status message display from LSP
-			"folke/neodev.nvim", -- QOL configs for nvim and LSP
-			"simrat39/rust-tools.nvim" -- Rust specific dev tools
-		},
-	},
+	{ 'williamboman/mason.nvim' },
+	{ 'williamboman/mason-lspconfig.nvim' },
+	{ 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+	{ 'neovim/nvim-lspconfig' },
+	{ 'hrsh7th/cmp-nvim-lsp' },
+	{ 'hrsh7th/nvim-cmp' },
+	{ 'L3MON4D3/LuaSnip' },
+	{ "folke/neodev.nvim", opts = {} },
 
 	-- Autocompletion
 	{

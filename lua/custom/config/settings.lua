@@ -11,10 +11,11 @@ vim.o.completeopt = "menuone,noselect" -- Set completion dialogs
 vim.o.termguicolors = true             -- Turn on full color terminal support
 
 vim.opt.linebreak = true               -- Turn on visual line breaks
+vim.opt.scrolloff = 8
 
-vim.wo.number = true                   -- Turn on line numbers
-vim.wo.relativenumber = true           -- Make line numbers relative to current cursor position
-vim.wo.signcolumn = "yes"              -- Display a gutter for signs (ex. git-signs plugin draws here)
+vim.wo.number = true         -- Turn on line numbers
+vim.wo.relativenumber = true -- Make line numbers relative to current cursor position
+vim.wo.signcolumn = "yes"    -- Display a gutter for signs (ex. git-signs plugin draws here)
 
 -- Enables automatic format on save via LSP
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
