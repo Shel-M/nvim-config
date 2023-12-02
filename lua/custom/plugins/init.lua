@@ -67,6 +67,7 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim", -- I don't think I'm smart enough to understand quite what this does lol, but it's some async something for telescope
 			-- Fast C implementation of the fuzzy finder's algorithm (Requires `make` to compile)
 			{
+				-- The weird build commands and use of specifically Cmake is so that the plugin works on Windows, which I have to use for work. :(
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build =
 				"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
