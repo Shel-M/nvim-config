@@ -26,6 +26,7 @@ vim.keymap.set("n", "<leader>/", function()
 	})
 end, { desc = "[/] Fuzzily search in current buffer" })
 
+-- Searching keymaps
 vim.keymap.set("n", "<leader>gf", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
@@ -37,3 +38,27 @@ vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = 
 
 -- Insert newline at cursor
 vim.keymap.set("n", "<C-j>", "R<cr><esc>k$")
+
+-- Ctrl+Windows ergonomics rebinds
+vim.keymap.set("n", "<leader>ws", "<C-w>v", { desc = "[S]plit" })
+vim.keymap.set("n", "<leader>w>", "<C-w>>", { desc = "Increase split width" })
+vim.keymap.set("n", "<leader>w<", "<C-w><", { desc = "Decrease split width" })
+vim.keymap.set("n", "<leader>wS", "<C-w>s", { desc = "[S]plit horizontal" })
+vim.keymap.set("n", "<leader>w+", "<C-w>+", { desc = "Increase split height" })
+vim.keymap.set("n", "<leader>w<", "<C-w>-", { desc = "Decrease split height" })
+vim.keymap.set("n", "<leader>ww", "<C-w>w", { desc = "S[w]itch windows" })
+vim.keymap.set("n", "<leader>wh", "<C-w>h", { desc = "Move to left window" })
+vim.keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Move to down window" })
+vim.keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Move to up window" })
+vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Move to right window" })
+vim.keymap.set("n", "<leader>wx", "<C-w>x", { desc = "Swap windows" })
+vim.keymap.set("n", "<leader>wt", "<C-w>T", { desc = "Open [t]ab" })
+vim.keymap.set("n", "<leader>w=", "<C-w>=", { desc = "Equal height and width" })
+vim.keymap.set("n", "<leader>wq", "<C-w>q", { desc = "[Q]uit" })
+vim.keymap.set("n", "<leader>wQ", "<C-w>o", { desc = "[Q]uit others" })
+
+-- Save and close binds
+vim.keymap.set("n", "<leader><C-s>", ":w<cr>", { desc = "[S]ave" })
+vim.keymap.set("n", "<leader>S", ":wa<cr>", { desc = "[S]ave all" })
+vim.keymap.set("n", "<leader>q", ":wqa<cr>", { desc = "Save and [Q]uit" })
+vim.keymap.set("n", "<leader>Q", ":qa!<cr>", { desc = "[Q]uit without save" })
