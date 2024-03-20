@@ -136,6 +136,21 @@ require("lazy").setup({
 			end,
 		},
 	},
+	{
+		'Exafunction/codeium.vim',
+		config = function()
+			-- Change '<C-g>' here to any keycode you like.
+			vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end,
+				{ expr = true, silent = true })
+			vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
+				{ expr = true, silent = true })
+			vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+				{ expr = true, silent = true })
+			vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end,
+				{ expr = true, silent = true })
+		end
+	},
+	{ 'saecki/crates.nvim', event = { "BufRead Cargo.toml" }, config = function() require("crates").setup() end, },
 })
 
 -- Post config that can't or shouldn't be done in opts{}

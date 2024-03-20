@@ -58,7 +58,7 @@ vim.keymap.set("n", "<leader>wq", "<C-w>q", { desc = "[Q]uit" })
 vim.keymap.set("n", "<leader>wQ", "<C-w>o", { desc = "[Q]uit others" })
 
 -- Save and close binds
-vim.keymap.set("n", "<leader><C-s>", ":w<cr>", { desc = "[S]ave" })
+vim.keymap.set("n", "<leader><cr>", ":w<cr>", { desc = "[S]ave" })
 vim.keymap.set("n", "<leader>S", ":wa<cr>", { desc = "[S]ave all" })
 vim.keymap.set("n", "<leader>q", ":wqa<cr>", { desc = "Save and [Q]uit" })
 vim.keymap.set("n", "<leader>Q", ":qa!<cr>", { desc = "[Q]uit without save" })
