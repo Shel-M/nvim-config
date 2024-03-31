@@ -19,3 +19,10 @@ vim.wo.signcolumn = "yes"    -- Display a gutter for signs (ex. git-signs plugin
 
 -- Enables automatic format on save via LSP
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+
+-- Configure templ extension
+vim.filetype.add {
+	extension = {
+		templ = "templ",
+	},
+}

@@ -14,7 +14,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set("n", "<leader>E", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Telescope
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
@@ -58,7 +58,7 @@ vim.keymap.set("n", "<leader>wq", "<C-w>q", { desc = "[Q]uit" })
 vim.keymap.set("n", "<leader>wQ", "<C-w>o", { desc = "[Q]uit others" })
 
 -- Save and close binds
-vim.keymap.set("n", "<leader><cr>", ":w<cr>", { desc = "[S]ave" })
+vim.keymap.set("n", "<leader>s", ":w<cr>", { desc = "[S]ave" })
 vim.keymap.set("n", "<leader>S", ":wa<cr>", { desc = "[S]ave all" })
-vim.keymap.set("n", "<leader>q", ":wqa<cr>", { desc = "Save and [Q]uit" })
+vim.keymap.set("n", "<leader>q", ":xqa<cr>", { desc = "Save and [Q]uit" })
 vim.keymap.set("n", "<leader>Q", ":qa!<cr>", { desc = "[Q]uit without save" })

@@ -150,7 +150,15 @@ require("lazy").setup({
 				{ expr = true, silent = true })
 		end
 	},
-	{ 'saecki/crates.nvim', event = { "BufRead Cargo.toml" }, config = function() require("crates").setup() end, },
+	{
+		'saecki/crates.nvim',
+		tag = "stable",
+		event = { "BufRead Cargo.toml" },
+		config = function()
+			require("crates")
+			    .setup()
+		end,
+	},
 })
 
 -- Post config that can't or shouldn't be done in opts{}
