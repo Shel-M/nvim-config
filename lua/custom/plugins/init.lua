@@ -138,6 +138,7 @@ require("lazy").setup({
 	},
 	{
 		'Exafunction/codeium.vim',
+		cmd = "CodeiumEnable",
 		config = function()
 			-- Change '<C-g>' here to any keycode you like.
 			vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end,

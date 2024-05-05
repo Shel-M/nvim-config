@@ -15,10 +15,10 @@ local ui = require("harpoon.ui")
 vim.keymap.set("n", "<leader>hh", mark.add_file, { desc = "[H]arpoon file" })
 vim.keymap.set("n", "<leader>hm", ui.toggle_quick_menu, { desc = "[H]arpoon [M]enu" })
 
-vim.keymap.set("n", "<leader>j", function() ui.nav_file(1) end, { desc = "File 1" })
-vim.keymap.set("n", "<leader>k", function() ui.nav_file(2) end, { desc = "File 2" })
-vim.keymap.set("n", "<leader>l", function() ui.nav_file(3) end, { desc = "File 3" })
-vim.keymap.set("n", "<leader>;", function() ui.nav_file(4) end, { desc = "File 4" })
+vim.keymap.set("n", "<leader>n", function() ui.nav_file(1) end, { desc = "File 1" })
+vim.keymap.set("n", "<leader>e", function() ui.nav_file(2) end, { desc = "File 2" })
+vim.keymap.set("n", "<leader>i", function() ui.nav_file(3) end, { desc = "File 3" })
+vim.keymap.set("n", "<leader>o", function() ui.nav_file(4) end, { desc = "File 4" })
 
 -- Telescope config
 require("telescope").setup {
@@ -160,7 +160,7 @@ require("which-key").register {
         ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
         ["<leader>h"] = { name = "[H]arpoon", _ = "which_key_ignore" },
         ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-        ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+        ["<leader>f"] = { name = "[F]ind", _ = "which_key_ignore" },
         ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
 }
 
