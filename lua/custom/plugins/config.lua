@@ -151,7 +151,15 @@ end)
 require("mason").setup({})
 require("mason-lspconfig").setup({
         ensure_installed = {},
-        handlers = { lsp_zero.default_setup },
+        handlers = {
+                function(server_name)
+                        if server_name == "tsserver" then
+                                server_name = "ts_ls"
+                        else
+                                lsp_zero.default_setup(server_name)
+                        end
+                end
+        },
 })
 
 require("which-key").add({
