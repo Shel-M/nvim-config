@@ -1,3 +1,5 @@
+vim.api.nvim_create_user_command("E", "Explore", {})
+
 vim.o.hlsearch = false                 -- Set highlight on search
 vim.o.mouse = "a"                      -- Enable mouse mode
 vim.o.clipboard = "unnamedplus"        -- Integrate system clipboard

@@ -65,82 +65,17 @@ end
 
 vim.api.nvim_create_user_command("LiveGrepGitRoot", live_grep_git_root, {})
 
--- Configure Treesitter
-vim.defer_fn(function()
-        require("nvim-treesitter.configs").setup {
-                ensure_installed = { "rust", "go", "bash", "lua" }, -- Default language installation
-                auto_install = true,                                -- Automatically install new languages as detected.
+-- Treesitter non-default configs
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.hypr = {
+        install_info = {
+                url = "https://github.com/luckasRanarison/tree-sitter-hypr",
+                files = { "src/parser.c" },
+                branch = "master",
+        },
+        filetype = "hypr",
+}
 
-                highlight = {
-                        enable = true,
-                        additional_vim_regex_highlighting = false
-                },
-                indent = { enable = true },
-                incremental_selection = {
-                        enable = true,
-                        keymaps = {
-                                init_selection = '<c-space>',
-                                node_incremental = '<c-space>',
-                                scope_incremental = '<c-s>',
-                                node_decremental = '<M-space>',
-                        },
-                },
-                textobjects = {
-                        select = {
-                                enable = true,
-                                lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-                                keymaps = {
-                                        -- You can use the capture groups defined in textobjects.scm
-                                        ['aa'] = '@parameter.outer',
-                                        ['ia'] = '@parameter.inner',
-                                        ['af'] = '@function.outer',
-                                        ['if'] = '@function.inner',
-                                        ['ac'] = '@class.outer',
-                                        ['ic'] = '@class.inner',
-                                },
-                        },
-                        move = {
-                                enable = true,
-                                set_jumps = true, -- whether to set jumps in the jumplist
-                                goto_next_start = {
-                                        [']m'] = '@function.outer',
-                                        [']]'] = '@class.outer',
-                                },
-                                goto_next_end = {
-                                        [']M'] = '@function.outer',
-                                        [']['] = '@class.outer',
-                                },
-                                goto_previous_start = {
-                                        ['[m'] = '@function.outer',
-                                        ['[['] = '@class.outer',
-                                },
-                                goto_previous_end = {
-                                        ['[M'] = '@function.outer',
-                                        ['[]'] = '@class.outer',
-                                },
-                        },
-                        swap = {
-                                enable = true,
-                                swap_next = {
-                                        ['<leader>a'] = '@parameter.inner',
-                                },
-                                swap_previous = {
-                                        ['<leader>A'] = '@parameter.inner',
-                                },
-                        },
-                },
-        }
-
-        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        parser_config.hypr = {
-                install_info = {
-                        url = "https://github.com/luckasRanarison/tree-sitter-hypr",
-                        files = { "src/parser.c" },
-                        branch = "master",
-                },
-                filetype = "hypr",
-        }
-end, 0)
 
 -- Configure LSP
 local lsp_zero = require("lsp-zero")
@@ -151,18 +86,26 @@ end)
 require("mason").setup({})
 require("mason-lspconfig").setup({
         ensure_installed = {},
-        handlers = { lsp_zero.default_setup },
+        handlers = {
+                function(server_name)
+                        if server_name == "tsserver" then
+                                server_name = "ts_ls"
+                        else
+                                lsp_zero.default_setup(server_name)
+                        end
+                end
+        },
 })
 
-require("which-key").register {
-        ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-        ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-        ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
-        ["<leader>h"] = { name = "[H]arpoon", _ = "which_key_ignore" },
-        ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-        ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-        ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-}
+require("which-key").add(
+        {
+                { "<leader>c", group = "[C]ode" },
+                { "<leader>g", group = "[G]it" },
+                { "<leader>h", group = "[H]arpoon" },
+                { "<leader>r", group = "[R]ename" },
+                { "<leader>f", group = "[F]ind" },
+                { "<leader>w", group = "[W]orkspace" },
+        })
 
 require("neodev").setup()
 
@@ -211,7 +154,7 @@ cmp.setup {
                 end, { "i", "s" }),
         },
         sources = {
-                { name = "codeium" },
+                -- { name = "codeium" },
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
                 { name = "crates.nvim" },
