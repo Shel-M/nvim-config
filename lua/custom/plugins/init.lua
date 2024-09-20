@@ -7,6 +7,7 @@ require("lazy").setup({
 	"folke/which-key.nvim", -- Keybind display / helper
 	"norcalli/nvim-colorizer.lua",
 	"ThePrimeagen/harpoon",
+	"ThePrimeagen/vim-be-good",
 
 	-- Simple setups, but require an opts = {} to run properly
 
@@ -138,6 +139,7 @@ require("lazy").setup({
 	},
 	{
 		'Exafunction/codeium.vim',
+		event = 'BufEnter',
 		config = function()
 			-- Change '<C-g>' here to any keycode you like.
 			vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end,
@@ -150,7 +152,7 @@ require("lazy").setup({
 				{ expr = true, silent = true })
 		end
 	},
-	{ 'saecki/crates.nvim', event = { "BufRead Cargo.toml" }, config = function() require("crates").setup() end, },
+	{ 'saecki/crates.nvim', event = { "BufRead Cargo.toml" } },
 })
 
 -- Post config that can't or shouldn't be done in opts{}
