@@ -15,10 +15,10 @@ local ui = require("harpoon.ui")
 vim.keymap.set("n", "<leader>hh", mark.add_file, { desc = "[H]arpoon file" })
 vim.keymap.set("n", "<leader>hm", ui.toggle_quick_menu, { desc = "[H]arpoon [M]enu" })
 
-vim.keymap.set("n", "<leader>n", function() ui.nav_file(1) end, { desc = "File 1" })
-vim.keymap.set("n", "<leader>e", function() ui.nav_file(2) end, { desc = "File 2" })
-vim.keymap.set("n", "<leader>i", function() ui.nav_file(3) end, { desc = "File 3" })
-vim.keymap.set("n", "<leader>o", function() ui.nav_file(4) end, { desc = "File 4" })
+vim.keymap.set("n", "<leader>l", function() ui.nav_file(1) end, { desc = "File 1" })
+vim.keymap.set("n", "<leader>u", function() ui.nav_file(2) end, { desc = "File 2" })
+vim.keymap.set("n", "<leader>y", function() ui.nav_file(3) end, { desc = "File 3" })
+vim.keymap.set("n", "<leader>;", function() ui.nav_file(4) end, { desc = "File 4" })
 
 -- Telescope config
 require("telescope").setup {
