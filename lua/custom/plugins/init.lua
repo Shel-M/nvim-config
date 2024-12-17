@@ -139,7 +139,7 @@ require("lazy").setup({
 	},
 	{
 		'Exafunction/codeium.vim',
-		event = 'BufEnter',
+		cmd = "CodeiumEnable",
 		config = function()
 			-- Change '<C-g>' here to any keycode you like.
 			vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end,
@@ -152,7 +152,13 @@ require("lazy").setup({
 				{ expr = true, silent = true })
 		end
 	},
-	{ 'saecki/crates.nvim', event = { "BufRead Cargo.toml" } },
+	{
+		'saecki/crates.nvim',
+		tag = 'stable',
+		config = function()
+			require('crates').setup()
+		end,
+	},
 })
 
 -- Post config that can't or shouldn't be done in opts{}
