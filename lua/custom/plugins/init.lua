@@ -162,6 +162,7 @@ require("lazy").setup({
 	},
 	{
 		'Exafunction/codeium.vim',
+		cmd = "CodeiumEnable",
 		config = function()
 			-- Change '<C-g>' here to any keycode you like.
 			vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end,
@@ -174,15 +175,21 @@ require("lazy").setup({
 				{ expr = true, silent = true })
 		end
 	},
+	-- Specific Rust LSP config with extra features
 	{
-		'saecki/crates.nvim',
-		tag = "stable",
-		event = { "BufRead Cargo.toml" },
-		config = function()
-			require("crates")
-			    .setup()
-		end,
+		'mrcjkb/rustaceanvim',
+		version = '^5', -- Recommended
+		lazy = false, -- This plugin is already lazy
 	},
+	-- {
+	-- 	'saecki/crates.nvim',
+	-- 	tag = "stable",
+	-- 	event = { "BufRead Cargo.toml" },
+	-- 	config = function()
+	-- 		require("crates")
+	-- 		    .setup()
+	-- 	end,
+	-- },
 })
 
 -- Post config that can't or shouldn't be done in opts{}

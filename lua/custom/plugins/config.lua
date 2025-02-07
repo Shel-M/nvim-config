@@ -86,6 +86,7 @@ end)
 require("mason").setup({})
 require("mason-lspconfig").setup({
         ensure_installed = {},
+        automatic_installation = false,
         handlers = {
                 function(server_name)
                         if server_name == "tsserver" then
@@ -93,20 +94,10 @@ require("mason-lspconfig").setup({
                         else
                                 lsp_zero.default_setup(server_name)
                         end
-                end
+                end,
+                ["rust_analyzer"] = function() end,
         },
 })
--- Workaround for https://github.com/neovim/neovim/issues/30985
--- Can be removed once that issue is resolved.
-for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
-        local default_diagnostic_handler = vim.lsp.handlers[method]
-        vim.lsp.handlers[method] = function(err, result, context, config)
-                if err ~= nil and err.code == -32802 then
-                        return
-                end
-                return default_diagnostic_handler(err, result, context, config)
-        end
-end
 
 require("which-key").add(
         {
