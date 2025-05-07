@@ -116,9 +116,14 @@ require("lazy").setup({
 	{
 		"rmagatti/auto-session",
 		opts = {
+			lazy_support = true,
 			log_level = "error",
-			auto_session_suppress_dirs = { "/", "~/", "~/Downloads" }
-		}
+			suppress_dirs = { "/", "~/", "~/Downloads" }
+		},
+		-- config = function()
+		-- 	vim.o.sessionoptions =
+		-- 	"blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+		-- end,
 	},
 
 	{
@@ -181,15 +186,15 @@ require("lazy").setup({
 		version = '^5', -- Recommended
 		lazy = false, -- This plugin is already lazy
 	},
-	-- {
-	-- 	'saecki/crates.nvim',
-	-- 	tag = "stable",
-	-- 	event = { "BufRead Cargo.toml" },
-	-- 	config = function()
-	-- 		require("crates")
-	-- 		    .setup()
-	-- 	end,
-	-- },
+	{
+		'saecki/crates.nvim',
+		tag = "stable",
+		event = { "BufRead Cargo.toml" },
+		config = function()
+			require("crates")
+			    .setup()
+		end,
+	},
 })
 
 -- Post config that can't or shouldn't be done in opts{}

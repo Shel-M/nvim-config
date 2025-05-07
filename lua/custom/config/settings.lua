@@ -12,7 +12,10 @@ vim.o.timeoutlen = 300                 -- Decrease timeout for hotkeys
 vim.o.completeopt = "menuone,noselect" -- Set completion dialogs
 vim.o.termguicolors = true             -- Turn on full color terminal support
 
-vim.opt.linebreak = true               -- Turn on visual line breaks
+-- Configure vim sessionoptions for auto-session plugin
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+vim.opt.linebreak = true -- Turn on visual line breaks
 vim.opt.scrolloff = 8
 
 vim.wo.number = true         -- Turn on line numbers
