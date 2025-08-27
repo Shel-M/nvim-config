@@ -161,6 +161,7 @@ require("mason-lspconfig").setup({
                 end
         },
 })
+require('lspconfig').gleam.setup({})
 
 require("which-key").add({
         { "<leader>c", group = "[C]ode" },
