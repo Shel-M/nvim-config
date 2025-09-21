@@ -160,6 +160,32 @@ require("lazy").setup({
 			    .setup()
 		end,
 	},
+
+	{
+		'2kabhishek/exercism.nvim',
+		cmd = { 'Exercism' },
+		keys = { '<leader>exa', '<leader>exl', '<leader>exr' }, -- add your preferred keybindings
+		dependencies = {
+			'2kabhishek/utils.nvim',          -- required, for utility functions
+			'2kabhishek/termim.nvim',         -- optional, better UX for running tests
+		},
+		-- Add your custom configs here, keep it blank for default configs (required)
+		opts = {
+			add_default_keybindings = true,
+			exercism_workspace = '~/Projects/exercism',
+			default_language = 'gleam'
+		},
+	},
+
+	{
+		'nvim-flutter/flutter-tools.nvim',
+		lazy = false,
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'stevearc/dressing.nvim', -- optional for vim.ui.select
+		},
+		config = true,
+	}
 })
 
 -- Post config that can't or shouldn't be done in opts{}
