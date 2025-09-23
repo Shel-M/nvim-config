@@ -121,8 +121,7 @@ require("lazy").setup({
 			suppress_dirs = { "/", "~/", "~/Downloads" }
 		},
 		-- config = function()
-		-- 	vim.o.sessionoptions =
-		-- 	"blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+		-- 	vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 		-- end,
 	},
 
@@ -165,21 +164,6 @@ require("lazy").setup({
 			end,
 		},
 	},
-	{
-		'Exafunction/codeium.vim',
-		cmd = "CodeiumEnable",
-		config = function()
-			-- Change '<C-g>' here to any keycode you like.
-			vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end,
-				{ expr = true, silent = true })
-			vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
-				{ expr = true, silent = true })
-			vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
-				{ expr = true, silent = true })
-			vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end,
-				{ expr = true, silent = true })
-		end
-	},
 	-- Specific Rust LSP config with extra features
 	{
 		'mrcjkb/rustaceanvim',
@@ -193,6 +177,14 @@ require("lazy").setup({
 		config = function()
 			require("crates")
 			    .setup()
+		end,
+	},
+
+	-- supermaven AI text completion
+	{
+		"supermaven-inc/supermaven-nvim",
+		config = function()
+			require("supermaven-nvim").setup({})
 		end,
 	},
 })
