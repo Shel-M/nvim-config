@@ -179,14 +179,6 @@ require("lazy").setup({
 			    .setup()
 		end,
 	},
-
-	-- supermaven AI text completion
-	{
-		"supermaven-inc/supermaven-nvim",
-		config = function()
-			require("supermaven-nvim").setup({})
-		end,
-	},
 })
 
 -- Post config that can't or shouldn't be done in opts{}
