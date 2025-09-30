@@ -2,38 +2,37 @@ require("lazy").setup({
 	-- Simple setups
 
 	"tpope/vim-fugitive", -- Git integration with vim
-	"tpope/vim-rhubarb", -- Github integration for vim-fugitive
-	"tpope/vim-sleuth", -- Automatic tab and space detection
+	"tpope/vim-rhubarb",  -- Github integration for vim-fugitive
+	"NMAC427/guess-indent.nvim", -- Automatic tab and space detection
 	"folke/which-key.nvim", -- Keybind display / helper
 	"norcalli/nvim-colorizer.lua",
 	"ThePrimeagen/harpoon",
 
 	-- Simple setups, but require an opts = {} to run properly
 
-	{ "numToStr/Comment.nvim",            opts = {} }, -- "gc" command to comment visually selected lines
+	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" command to comment visually selected lines
 
 	-- Advanced setups
 
-	-- LSP integration with nvim
-	{ 'williamboman/mason.nvim' },
-	{ 'williamboman/mason-lspconfig.nvim' },
-	{ 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
-	{ 'neovim/nvim-lspconfig' },
-	{ 'hrsh7th/cmp-nvim-lsp' },
-	{ 'hrsh7th/nvim-cmp' },
-	{ 'L3MON4D3/LuaSnip' },
-	{ "folke/neodev.nvim",                opts = {} },
-	{ "j-hui/fidget.nvim",                opts = {} },
-
 	-- Autocompletion
 	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"L3MON4D3/LuaSnip", -- Snippet engine
-			"saadparwaiz1/cmp_luasnip", -- Snippet engine nvim-cmp integration
-			"hrsh7th/cmp-nvim-lsp", -- Autocompletion from LSP
-			"rafamadriz/friendly-snippets", -- User-friendly snippet collection
+		"saghen/blink.cmp",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		-- See: https://cmp.saghen.dev/installation for opts explanations
+		opts = {
+			keymap = { preset = "enter" },
+			appearance = { nerd_font_variant = "mono" },
+			completion = { documentation = { auto_show = true } },
+			sources = {
+				default = { "lsp", "path", "snippets", "lazydev" },
+				providers = {
+					lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+				},
+			},
+			snippets = { preset = "luasnip" },
+			fuzzy = { implementation = "lua" },
 		},
+		opts_extend = { "sources.default" }
 	},
 
 	-- Theme
@@ -75,6 +74,8 @@ require("lazy").setup({
 					return vim.fn.executable "cmake" == 1
 				end,
 			},
+			{ "nvim-telescope/telescope-ui-select.nvim" },
+			{ "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
 		},
 	},
 
@@ -138,7 +139,7 @@ require("lazy").setup({
 				changedelete = { text = "~" },
 			},
 			on_attach = function(bufnr)
-				vim.keymap.set("n", "<leader>gp", require("gitsigns").preview_hunk,
+				vim.keymap.set({ "n", "v" }, "<leader>h", require("gitsigns").preview_hunk,
 					{ buffer = bufnr, desc = "Preview git hunk" })
 
 				-- don't override the built-in and fugitive keymaps
@@ -164,10 +165,28 @@ require("lazy").setup({
 			end,
 		},
 	},
+
+	-- LSP config
+	{
+		'neovim/nvim-lspconfig',
+		dependencies = {
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			"j-hui/fidget.nvim",
+			"saghen/blink.cmp",
+		},
+	},
+
+
+	-- LSP integration with nvim
+	{ 'L3MON4D3/LuaSnip' },
+
+
 	-- Specific Rust LSP config with extra features
 	{
 		'mrcjkb/rustaceanvim',
-		version = '^5', -- Recommended
+		version = '^6', -- Recommended
 		lazy = false, -- This plugin is already lazy
 	},
 	{
@@ -178,6 +197,18 @@ require("lazy").setup({
 			require("crates")
 			    .setup()
 		end,
+	},
+
+	-- LSP config for neovim
+	{
+		'folke/lazydev.nvim',
+		ft = 'lua',
+		opts = {
+			library = {
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+			},
+		},
 	},
 })
 
