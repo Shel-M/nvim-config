@@ -12,7 +12,6 @@ vim.o.signcolumn = "yes"               -- Display a gutter for signs (ex. git-si
 vim.o.updatetime = 250                 -- Decrease time between swap file writes
 vim.o.timeoutlen = 300                 -- Decrease timeout for hotkeys
 vim.o.splitright = true                -- Allow new splits to the right
-vim.o.splitbelow = true                -- Allow new splits below
 vim.o.list = true                      -- Allow lists for options.
 vim.o.inccommand = "split"             -- Live preview substitutions
 vim.o.scrolloff = 10                   -- Number of lines to keep above and below the cursor
