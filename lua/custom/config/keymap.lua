@@ -15,6 +15,9 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>E", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
+-- Lsp keymap
+vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
 -- Telescope
 local builtin = require("telescope.builtin")
 -- vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
