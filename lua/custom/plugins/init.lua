@@ -2,7 +2,7 @@ require("lazy").setup({
 	-- Simple setups
 
 	"tpope/vim-fugitive", -- Git integration with vim
-	"tpope/vim-rhubarb",  -- Github integration for vim-fugitive
+	"tpope/vim-rhubarb", -- Github integration for vim-fugitive
 	"NMAC427/guess-indent.nvim", -- Automatic tab and space detection
 	"folke/which-key.nvim", -- Keybind display / helper
 	"norcalli/nvim-colorizer.lua",
@@ -69,8 +69,7 @@ require("lazy").setup({
 			{
 				-- The weird build commands and use of specifically Cmake is so that the plugin works on Windows, which I have to use for work. :(
 				"nvim-telescope/telescope-fzf-native.nvim",
-				build =
-				"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 				cond = function()
 					return vim.fn.executable("cmake") == 1
 				end,
@@ -130,7 +129,6 @@ require("lazy").setup({
 		-- end,
 	},
 
-
 	-- LSP confg
 	{
 		"neovim/nvim-lspconfig",
@@ -170,6 +168,27 @@ require("lazy").setup({
 				-- Load luvit types when the `vim.uv` word is found
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
+		},
+	},
+
+	-- Typst support
+	{
+		"chomosuke/typst-preview.nvim",
+		ft = "typst",
+		version = "1.*",
+		opts = {}, -- lazy.nvim will implicitly calls `setup {}`
+	},
+	-- Markdown support
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {
+			file_types = { "markdown" },
+			competions = { lsp = { enabled = true } },
 		},
 	},
 })
