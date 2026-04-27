@@ -218,7 +218,7 @@ require("lazy").setup({
 	-- Specific Rust LSP config with extra features
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^6", -- Recommended
+		version = "^9", -- Recommended
 		lazy = false, -- This plugin is already lazy
 	},
 	{
