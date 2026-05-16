@@ -120,8 +120,8 @@ end
 
 vim.api.nvim_create_user_command("LiveGrepGitRoot", live_grep_git_root, {})
 
--- -- Treesitter non-default configs
--- ---@class parser_config
+-- Treesitter non-default configs
+---@class parser_config
 -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 -- parser_config.hypr = {
 -- 	install_info = {
@@ -131,8 +131,6 @@ vim.api.nvim_create_user_command("LiveGrepGitRoot", live_grep_git_root, {})
 -- 	},
 -- 	filetype = "hypr",
 -- }
-
-require("nvim-treesitter")
 
 -- Configure LSP
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -345,4 +343,3 @@ luasnip.config.setup({})
 
 -- Configure colorizer
 vim.o.termguicolors = true -- Turn on full color terminal support
--- require("colorizer").setup()
