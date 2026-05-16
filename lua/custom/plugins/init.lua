@@ -5,7 +5,7 @@ require("lazy").setup({
 	"tpope/vim-rhubarb", -- Github integration for vim-fugitive
 	"NMAC427/guess-indent.nvim", -- Automatic tab and space detection
 	"folke/which-key.nvim", -- Keybind display / helper
-	"norcalli/nvim-colorizer.lua",
+	-- "norcalli/nvim-colorizer.lua",
 	"ThePrimeagen/harpoon",
 	"lewis6991/gitsigns.nvim", -- Adds git related signs to the gutter, as well as utilities for managing changes
 
@@ -19,6 +19,7 @@ require("lazy").setup({
 	{
 		"saghen/blink.cmp",
 		dependencies = { "rafamadriz/friendly-snippets" },
+		branch = "v1",
 		-- See: https://cmp.saghen.dev/installation for opts explanations
 		opts = {
 			keymap = { preset = "enter" },
@@ -45,7 +46,7 @@ require("lazy").setup({
 		opts = {
 			options = {
 				icons_enabled = true,
-				theme = "catppuccin",
+				-- theme = "catppuccin",
 				component_separators = "|",
 				section_separators = "",
 			},
@@ -62,7 +63,7 @@ require("lazy").setup({
 	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
+		-- branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- I don't think I'm smart enough to understand quite what this does lol, but it's some async something for telescope
 			-- Fast C implementation of the fuzzy finder's algorithm (Requires `make` to compile)
@@ -86,6 +87,7 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		branch = "main",
 		opts = {
 			ensure_installed = { "bash", "c", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
 			-- Autoinstall languages that are not installed
@@ -105,7 +107,7 @@ require("lazy").setup({
 			-- Prefer git instead of curl in order to improve connectivity in some environments
 			require("nvim-treesitter.install").prefer_git = true
 			---@diagnostic disable-next-line: missing-fields
-			require("nvim-treesitter.configs").setup(opts)
+			require("nvim-treesitter").setup(opts)
 
 			-- There are additional nvim-treesitter modules that you can use to interact
 			-- with nvim-treesitter. You should go explore a few and see what interests you:
