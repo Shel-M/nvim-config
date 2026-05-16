@@ -91,6 +91,7 @@ require("lazy").setup({
 		lazy = false,
 		branch = "main",
 		build = ":TSUpdate",
+		branch = "main",
 		opts = {
 			ensure_installed = {
 				"bash",
@@ -239,6 +240,27 @@ require("lazy").setup({
 				-- Load luvit types when the `vim.uv` word is found
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
+		},
+	},
+
+	-- Typst support
+	{
+		"chomosuke/typst-preview.nvim",
+		ft = "typst",
+		version = "1.*",
+		opts = {}, -- lazy.nvim will implicitly calls `setup {}`
+	},
+	-- Markdown support
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {
+			file_types = { "markdown" },
+			competions = { lsp = { enabled = true } },
 		},
 	},
 })
